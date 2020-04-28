@@ -26,6 +26,8 @@ var questionSet = [
     }
 ]
 
+
+
 start.addEventListener("click", function() {
 
     function setTime() {
@@ -53,7 +55,7 @@ start.addEventListener("click", function() {
     setTime();
     
     function renderQuestion(index) {
- 
+
         //question.correctAnswerKey
 
        question = questionSet[index]
@@ -68,12 +70,37 @@ start.addEventListener("click", function() {
         <div id='answer_2' key='${question.answer_bank[2].key}'>${question.answer_bank[2].answer}</div>
         </div>`
 
+        const button = `<button class="choice_button_0" onclick="test()"><div id='answer_0' key='${question.answer_bank[0].key}'>${question.answer_bank[0].answer}</div></button>`
+        document.getElementById("answer_0");
+        answer_0.innerHTML = button
         
-      
+        const button1 = `<button class="choice_button_1" onclick="test()"><div id='answer_1' key='${question.answer_bank[1].key}'>${question.answer_bank[1].answer}</div></button>`
+        document.getElementById("answer_1");
+        answer_1.innerHTML = button1
+
+        const button2 = `<button class="choice_button_2" onclick="test()"><div id='answer_2' key='${question.answer_bank[2].key}'>${question.answer_bank[2].answer}</div></button>`
+        document.getElementById("answer_2");
+        answer_2.innerHTML = button2
+
+        // function test() {
+        //     addEventListener("click", function() {
+        //         console.log("worked again")
+        //     })
+        
+        // }
+        // test();
+
         
  }
-
-    renderQuestion(0);
+ 
     
 
+    
+    renderQuestion(0);
+    
+    
 })
+
+
+
+
