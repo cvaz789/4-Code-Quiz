@@ -1,29 +1,28 @@
-//var renderList = document.querySelector("container")
-var questionList = document.querySelector("#question-list")
+var output = document.getElementById("question-container")
+//var questionRender2 = document.getElementById("container")
 var start = document.getElementById("start")
 var time = document.getElementById("timer")
 var timeLeft = 10;
 
-const questionSet = [
+var questionSet = [
     {
         question: "Who invented JavaScript?",
-        answers: {
-            a: "Douglas Crockford",
-            b: "Sheryl Sandberg",
-            c: "Brendan Eich"
-        },
-        correctAnswer: "c"
-    
+        answer_bank: [
+            {key: 'a', answer: "Douglas Crockford"},
+            {key: 'b', answer: "Sheryl Sandberg"},
+            {key: 'c', answer: "Brendan Eich"}
+        ],
+        correctAnswerKey: 'c'
     },
 
     {
         question: "How do you traverse the DOM?",
-        answers: {
-            a: "My computer",
-            b: "A plane",
-            c: "Through a javascript file"
-        },
-        correctAnswer: "c"
+        answer_bank: [
+            {key: 'a', answer: "My computer"},
+            {key: 'b', answer: "A plane"},
+            {key: 'c', answer: "Through a javascript file"}
+        ],
+        correctAnswerKey: 'c'
     }
 ]
 
@@ -53,28 +52,39 @@ start.addEventListener("click", function() {
 
     setTime();
     
-    function renderQuestions() {
-        console.log("length of array: " + questionSet.length);
+    function renderQuestion(index) {
+        /*console.log("length of array: " + questionSet.length);
         console.log(questionSet)
         console.log(JSON.stringify(questionSet[0]));
+        */
+       question = questionSet[index]
 
-        questionList.innerHTML = "";
+       document.getElementById("container").innerHTML = `
+       <h1 class="total-questions">Questions (${questionSet.length})</h1>
+        <div class="question-div">
+        ${question.question}
+        <br>
+        <div id='answer_0' key='${question.answer_bank[0].key}'>${question.answer_bank[0].answer}</div>
+        <div id='answer_1' key='${question.answer_bank[1].key}'>${question.answer_bank[1].answer}</div>
+        <div id='answer_2' key='${question.answer_bank[2].key}'>${question.answer_bank[2].answer}</div>
+        </div>`
 
-        for (var i=0; i<questionSet.length; i++) {
-
-            var question = questionSet[i]
-
-            var liQuestion = document.createElement("li");
-            liQuestion.textContent = question;
-            liQuestion.setAttribute("data-index", i);
-
-            questionList.appendChild(liQuestion);          
-        }
-
+        //question.correctAnswerKey
+       /* 
+       document.getElementById("question-container").innerHTML = `
+       <h1 class="total-questions">Questions (${questionSet.length})</h1>
+        <div class="question-div">
+        ${question.question}
+        <br>
+        <div id='answer_0' key='${question.answer_bank[0].key}'>${question.answer_bank[0].answer}</div>
+        <div id='answer_1' key='${question.answer_bank[1].key}'>${question.answer_bank[1].answer}</div>
+        <div id='answer_2' key='${question.answer_bank[2].key}'>${question.answer_bank[2].answer}</div>
+        </div>`
+        */
         
  }
 
-    renderQuestions();
+    renderQuestion(0);
     
 
 })
